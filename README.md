@@ -81,3 +81,7 @@ List of Knowledge Distillation Algorithms implemented in [AquVitae](https://gith
 ## License
 
 Licensed under the [MIT License](https://github.com/aquvitae/aquvitae/blob/master/LICENSE).
+
+Copyright © [marload](https://github.com/marload)
+
+[AquVitae](https://github.com/aqvitae/aquvitae) is open-sourced software licensed under the MIT License](https://github.com/aquvitae/aquvitae/blob/master/LICENSE).
