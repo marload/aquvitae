@@ -16,7 +16,7 @@
 
 ## Getting Started
 
-### TensorFlow Example
+#### TensorFlow Example
 ```python
 from tensorflow as tf
 from quavitae import dist, ST
@@ -40,7 +40,7 @@ student = dist(
 )
 ```
 
-### PyTorch Example
+#### PyTorch Example
 ```python
 from torch
 from quavitae import dist, DML
