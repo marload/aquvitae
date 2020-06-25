@@ -38,6 +38,7 @@ student = dist(
 ```
 
 #### PyTorch Example
+
 ```python
 from torch
 from aquvitae import dist, DML
