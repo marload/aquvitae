@@ -8,20 +8,14 @@
 
 <h2 align=center>The easiest Knowledge Distillation Library</h2>
 
-[aquvitae](https://github.com/aquvitae/aquvitae) is a Python library that is the easiest to perform Knowledge Distillation through a very simple API. This library supports [TensorFlow](https://github.com/tensorflow/tensorflow) and [PyTorch](https://github.com/pytorch/pytorch). Knowledge Distillation is usually used for lightweight deep learning. This library has a popular and diverse Knowledge Distillation algorithm. If the deep learning model used in your project is too heavy, you can use [aquvitae](https://github.com/aquvitae/aquvitae) to make the speed very fast with little loss of performance.
-
-## Installation
-
-```bash
-$ pip install aquvitae
-```
+[AquVitae](https://github.com/aquvitae/aquvitae) is a Python library that is the easiest to perform Knowledge Distillation through a very simple API. This library supports [TensorFlow](https://github.com/tensorflow/tensorflow) and [PyTorch](https://github.com/pytorch/pytorch). Knowledge Distillation is usually used for lightweight deep learning. This library has a popular and diverse Knowledge Distillation algorithm. If the deep learning model used in your project is too heavy, you can use [AquVitae](https://github.com/aquvitae/aquvitae) to make the speed very fast with little loss of performance.
 
 ## Getting Started
 
 #### TensorFlow Example
 ```python
 from tensorflow as tf
-from quavitae import dist, ST
+from aquvitae import dist, ST
 
 # Load the dataset
 train_ds = ...
@@ -45,7 +39,7 @@ student = dist(
 #### PyTorch Example
 ```python
 from torch
-from quavitae import dist, DML
+from aquvitae import dist, DML
 
 # Load the dataset
 train_ds = ...
@@ -64,4 +58,19 @@ student = dist(
     test_ds=test_ds,
     iterations=3000
 )
+```
+
+## Algorithms
+
+List of Knowledge Distillation Algorithms implemented in AquVitae
+
+| Algo | Argument | Paper |
+|:---:|:---:|:---:|
+| ST | `alpha`, `T` | [Distilling the Knowledge in a Neural Network](https://arxiv.org/pdf/1503.02531.pdf |
+| DML | `alpha` | [Deep Mutual Learning](https://arxiv.org/pdf/1706.00384.pdf) |
+
+## Installation
+
+```bash
+$ pip install aquvitae
 ```
