@@ -13,6 +13,7 @@
 ## Getting Started
 
 #### TensorFlow Example
+
 ```python
 from tensorflow as tf
 from aquvitae import dist, ST
