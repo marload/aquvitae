@@ -6,7 +6,7 @@ import tensorflow as tf
 
 class BaseTensorflow(object, metaclass=ABCMeta):
     def __init__(self, config):
-        self.metrics = [tf.keras.metrics.SparseCategoricalAccuracy(name='Accuracy')]
+        self.metrics = [tf.keras.metrics.SparseCategoricalAccuracy(name="Accuracy")]
 
     def set_model(self, teacher, student, optimizer):
         self.teacher = teacher
