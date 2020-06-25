@@ -69,7 +69,7 @@ $ pip install aquvitae
 
 ## Algorithms
 
-List of Knowledge Distillation Algorithms implemented in AquVitae
+List of Knowledge Distillation Algorithms implemented in [AquVitae](https://github.com/aquvitae/aquvitae).
 
 | Algo | HP | Paper | TF | TORCH |
 |:---:|:---:|:---:|:---:|:---:|
