@@ -10,9 +10,10 @@
 
 ## Getting Started
 
+### TensorFlow Example
 ```python
 from tensorflow as tf
-from quavitae import dist, KD
+from quavitae import dist, ST
 
 # Load the dataset
 train_ds = ...
@@ -26,8 +27,32 @@ student = ...
 dist(
     teacher=teacher,
     student=student,
-    algo=KD(alpha=0.6, T=2.5),
+    algo=ST(alpha=0.6, T=2.5),
     optimizer=tf.keras.optimizers.Adam(),
+    train_ds=train_ds,
+    test_ds=test_ds
+)
+```
+
+### PyTorch Example
+```python
+from torch
+from quavitae import dist, DML
+
+# Load the dataset
+train_ds = ...
+test_ds = ...
+
+# Load the teacher and student model
+teacher = ...
+student = ...
+
+
+dist(
+    teacher=teacher,
+    student=student,
+    algo=DML(alpha=0.6),
+    optimizer=torch.optim.Adam()
     train_ds=train_ds,
     test_ds=test_ds
 )
