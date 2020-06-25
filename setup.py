@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='aquvitae',
-    version='dev-0.1',
+    version='0.1',
     description='The easiest Knowledge Distillation library for Light Weight DeepLearning',
     author='marload',
     author_email='rladhkstn8@gmail.com',
