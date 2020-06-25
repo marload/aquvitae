@@ -10,7 +10,7 @@ from .utils import result_to_tqdm_template
 
 
 def dist(
-    teacher, student, algo, optimizer, train_ds, test_ds, iterations=1000, test_freq=200
+    teacher, student, algo, optimizer, train_ds, test_ds, iterations, test_freq=200
 ):
     info = _check_dist(teacher, student, algo, optimizer, train_ds, test_ds,)
 
