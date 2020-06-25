@@ -11,7 +11,7 @@
 ## Installation
 
 ```base
-# pip install aquvitae
+$ pip install aquvitae
 ```
 
 ## Getting Started
