@@ -8,6 +8,12 @@
 
 <h2 align=center>The easiest Knowledge Distillation Library</h2>
 
+## Installation
+
+```base
+# pip install aquvitae
+```
+
 ## Getting Started
 
 ### TensorFlow Example
