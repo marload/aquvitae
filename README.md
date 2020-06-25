@@ -35,7 +35,8 @@ student = dist(
     algo=ST(alpha=0.6, T=2.5),
     optimizer=tf.keras.optimizers.Adam(),
     train_ds=train_ds,
-    test_ds=test_ds
+    test_ds=test_ds,
+    iterations=3000
 )
 ```
 
@@ -58,6 +59,7 @@ student = dist(
     algo=DML(alpha=0.6),
     optimizer=torch.optim.Adam()
     train_ds=train_ds,
-    test_ds=test_ds
+    test_ds=test_ds,
+    iterations=3000
 )
 ```
