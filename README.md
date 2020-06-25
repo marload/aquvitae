@@ -8,7 +8,7 @@
 
 <h2 align=center>The easiest Knowledge Distillation Library</h2>
 
-[aquvitae](https://github.com/aquvitae/aquvitae) is a Python library that is the easiest to perform Knowledge Distillation through a very simple API.
+[aquvitae](https://github.com/aquvitae/aquvitae) is a Python library that is the easiest to perform Knowledge Distillation through a very simple API. This library supports TensorFlow and PyTorch. Knowledge Distillation is usually used for lightweight deep learning. This library has a popular and diverse Knowledge Distillation algorithm. If the deep learning model used in your project is too heavy, you can use [aquivitae](https://github.com/aquvitae/aquvitae) to make the speed very fast with little loss of performance.
 
 ## Installation
 
