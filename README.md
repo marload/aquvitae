@@ -10,7 +10,7 @@
 
 ## Installation
 
-```base
+```bash
 $ pip install aquvitae
 ```
 
