@@ -24,7 +24,7 @@ teacher = ...
 student = ...
 
 
-dist(
+student = dist(
     teacher=teacher,
     student=student,
     algo=ST(alpha=0.6, T=2.5),
@@ -48,7 +48,7 @@ teacher = ...
 student = ...
 
 
-dist(
+student = dist(
     teacher=teacher,
     student=student,
     algo=DML(alpha=0.6),
