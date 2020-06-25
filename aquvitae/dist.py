@@ -13,10 +13,10 @@ def dist(teacher, student, algo, optimizer, train_ds, test_ds, iterations=1000, 
     info = _check_dist(teacher, student, algo, optimizer, train_ds, test_ds,)
 
     if info['framework'] == 'torch':
-        _torch_dist(teacher, student, algo.torch(),
+        return _torch_dist(teacher, student, algo.torch(),
                     optimizer, train_ds, test_ds, iterations, test_freq)
     elif info['framework'] == 'tensorflow':
-        _tensorflow_dist(teacher, student, algo.tensorflow(),
+        return _tensorflow_dist(teacher, student, algo.tensorflow(),
                          optimizer, train_ds, test_ds, iterations, test_freq)
     else:
         raise NotImplementedError
@@ -62,6 +62,8 @@ def _tensorflow_dist(teacher, student, algo, optimizer, train_ds, test_ds, itera
             result = algo.test(test_ds)
             test_metric_tmp = result_to_tqdm_template(result)
             test_metric_log.set_description_str('TEST\t' + test_metric_tmp)
+    
+    return student
 
 
 def _torch_dist(teacher, student, algo, optimizer, dataset, iterations, test_freq):
