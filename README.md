@@ -8,6 +8,8 @@
 
 <h2 align=center>The easiest Knowledge Distillation Library</h2>
 
+[aquvitae](https://github.com/aquvitae/aquvitae) is a Python library that is the easiest to perform Knowledge Distillation through a very simple API.
+
 ## Installation
 
 ```bash
