@@ -1,11 +1,12 @@
 from abc import ABCMeta, abstractmethod
 
-import tensorflow as tf
+import torch
+import ignite
 
 
-class BaseTensorflow(object, metaclass=ABCMeta):
+class BaseTorch(object, metaclass=ABCMeta):
     def __init__(self, config):
-        self.metrics = {"Accuracy": tf.keras.metrics.SparseCategoricalAccuracy()}
+        self.metrics = {"Accuracy": ignite.metrics.Accuracy()}
 
     def set_model(self, teacher, student, optimizer):
         self.teacher = teacher
@@ -18,28 +19,30 @@ class BaseTensorflow(object, metaclass=ABCMeta):
 
     def logging_metrics(self, labels, logits):
         for name in self.metrics.keys():
-            self.metrics[name].update_state(logits, labels)
+            self.metrics[name].update([logits, labels])
 
     def reset_metrics(self):
         for name in self.metrics.keys():
-            self.metrics[name].reset_states()
+            self.metrics[name].reset()
 
     def set_metrics(self, metrics):
         for name in metrics.keys():
-            assert isinstance(metrics.keys()[name], tf.keras.metrics.Metric)
+            assert isinstance(metrics.keys()[name], ignite.metrics.Metric)
             self.metrics[name] = metrics
 
     def get_metrics(self):
         result = {}
         for name in self.metrics.keys():
-            result[name] = self.metrics[name].result()
+            result[name] = self.metrics[name].compute()
         return result
 
     def test(self, dataset):
         self.reset_metrics()
-        for x, y in dataset:
-            logits = self.student(x, training=False)
-            self.logging_metrics(y, logits)
+        student = self.student.eval()
+        with torch.set_grad_enabled(False):
+            for x, y in dataset:
+                logits = student(x)
+                self.logging_metrics(y, logits)
         result = self.get_metrics()
         self.reset_metrics()
         return result

@@ -23,16 +23,18 @@ class ST(BaseTensorflow):
         self.logging_metrics(y, s_logits)
         return loss
 
+    @tf.function
     def compute_loss(self, t_logits, s_logits, labels):
-        return (1 - self.alpha) * self.cls_loss(
-            labels, s_logits
-        ) + self.alpha * self.st_loss(t_logits, s_logits)
+        cls_loss = self.cls_loss(labels, s_logits)
+        st_loss = self.st_loss(t_logits, s_logits)
+        return (1 - self.alpha) * cls_loss + self.alpha * st_loss
 
+    @tf.function
     def cls_loss(self, labels, s_logits):
-        criterion = tf.keras.losses.SparseCategoricalCrossentropy()
-        s_logits = tf.nn.softmax(s_logits)
+        criterion = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
         return criterion(labels, s_logits)
 
+    @tf.function
     def st_loss(self, t_logits, s_logits):
         assert t_logits.shape == s_logits.shape
         return tf.reduce_mean(
