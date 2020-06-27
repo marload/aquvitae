@@ -7,7 +7,7 @@ setup(
     author="marload",
     author_email="rladhkstn8@gmail.com",
     url="https://github.com/aquvitae/aquvitae",
-    download_url="https://github.com/aquvitae/aquvitae/archive/0.0.tar.gz",
+    download_url="https://github.com/aquvitae/aquvitae/archive/v0.1.0.tar.gz",
     license="MIT",
     install_requires=[],
     setup_requires=["tqdm>=4.46.1", "pytorch-ignite>=0.4.0"],
