@@ -65,7 +65,7 @@ def _check_dist(teacher, student, algo, optimizer, train_ds, test_ds):
 
 def _init_dist(teacher, student, algo, optimizer, iterations):
     algo.set_model(teacher, student, optimizer)
-    bar_format = "{desc} - {n_fmt}/{total_fmt} [{bar:30}] ETA: {elapsed}{postfix}"
+    bar_format = "{desc} - {n_fmt}/{total_fmt} [{bar:30}] ELP: {elapsed}{postfix}"
     process_log = trange(iterations, desc="Training", position=0, bar_format=bar_format)
     return algo, process_log
 
