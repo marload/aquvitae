@@ -7,4 +7,4 @@ from .dist import dist
 from .algo import BaseKD
 from .algo import ST
 
-__version__ = "0.2.2"
+__version__ = "0.0.1"
