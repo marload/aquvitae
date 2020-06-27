@@ -50,6 +50,9 @@ def _check_dist(teacher, student, algo, optimizer, train_ds, test_ds):
 
     info = {"framework": None}
     if isinstance(teacher, torch.nn.Module) and isinstance(student, torch.nn.Module):
+        assert isinstance(optimizer, torch.optim.Optimizer)
+        assert isinstance(train_ds, torch.utils.data.DataLoader)
+        assert isinstance(test_ds, torch.utils.data.DataLoader)
         info["framework"] = "torch"
     elif isinstance(teacher, tf.keras.Model) and isinstance(student, tf.keras.Model):
         assert isinstance(optimizer, tf.keras.optimizers.Optimizer)
