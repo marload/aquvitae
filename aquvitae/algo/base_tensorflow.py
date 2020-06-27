@@ -38,7 +38,7 @@ class BaseTensorflow(object, metaclass=ABCMeta):
     def test(self, dataset):
         self.reset_metrics()
         for x, y in dataset:
-            logits = self.student(x)
+            logits = self.student(x, training=True)
             self.logging_metrics(y, logits)
 
         result = self.get_metrics()
