@@ -10,10 +10,9 @@
 
 ## Getting Started
 
-#### TensorFlow Example
+In AquVitae, you only need to call the function **once** for Knowledge Distillation.
 
 ```python
-from tensorflow as tf
 from aquvitae import dist, ST
 
 # Load the dataset
@@ -24,36 +23,14 @@ test_ds = ...
 teacher = ...
 student = ...
 
+optimizer = ...
+
+# Knowledge Distillation
 student = dist(
     teacher=teacher,
     student=student,
     algo=ST(alpha=0.6, T=2.5),
-    optimizer=tf.keras.optimizers.Adam(),
-    train_ds=train_ds,
-    test_ds=test_ds,
-    iterations=3000
-)
-```
-
-#### PyTorch Example
-
-```python
-from torch
-from aquvitae import dist, ST
-
-# Load the dataset
-train_ds = ...
-test_ds = ...
-
-# Load the teacher and student model
-teacher = ...
-student = ...
-
-student = dist(
-    teacher=teacher,
-    student=student,
-    algo=ST(alpha=0.6, T=2.5),
-    optimizer=torch.optim.Adam(student.parameters())
+    optimizer=optimizer,
     train_ds=train_ds,
     test_ds=test_ds,
     iterations=3000
