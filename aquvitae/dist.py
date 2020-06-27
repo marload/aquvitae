@@ -100,28 +100,30 @@ def _tensorflow_dist(
 def _torch_dist(
     teacher, student, algo, optimizer, train_ds, test_ds, iterations, test_freq
 ):
-    algo, iter_log, train_metric_log, test_metric_log = _init_dist(
-        teacher, student, algo, optimizer, iterations
-    )
+    algo, process_log = _init_dist(teacher, student, algo, optimizer, iterations)
+
+    train_tmp = ""
+    test_tmp = ""
 
     train_ds = iter(train_ds)
-
     for idx in range(iterations):
         try:
             x, y = train_ds.next()
         except StopIteration:
             train_ds = iter(train_ds)
             x, y = train_ds.next()
+        process_log.update(1)
         loss = algo.teach_step(x, y)
         result = algo.get_metrics()
-        train_metric_tmp = result_to_tqdm_template(result)
-        train_metric_log.set_description_str("TRAIN:\t" + train_metric_tmp)
-        iter_log.update(1)
+        train_tmp = result_to_tqdm_template(result)
 
         if idx % test_freq == 0 and idx != 0:
+            process_log.set_description_str("Testing ")
             algo.reset_metrics()
             result = algo.test(test_ds)
-            test_metric_tmp = result_to_tqdm_template(result)
-            test_metric_log.set_description_str("TEST:\t" + test_metric_tmp)
+            test_tmp = result_to_tqdm_template(result, training=False)
+            process_log.set_description_str("Training")
+        postfix = train_tmp + "- " + test_tmp
+        process_log.set_postfix_str(postfix)
 
     return student

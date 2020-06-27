@@ -39,13 +39,11 @@ class BaseTorch(object, metaclass=ABCMeta):
 
     def test(self, dataset):
         self.reset_metrics()
-        self.student.eval()
         with torch.set_grad_enabled(False):
             for x, y in dataset:
                 x, y = x.to(device), y.to(device)
                 logits = self.student(x)
                 self.logging_metrics(y, logits)
-        self.student.train()
         result = self.get_metrics()
         self.reset_metrics()
         return result

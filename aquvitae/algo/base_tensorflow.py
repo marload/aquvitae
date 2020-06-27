@@ -35,6 +35,7 @@ class BaseTensorflow(object, metaclass=ABCMeta):
             result[name] = self.metrics[name].result()
         return result
 
+    @tf.function
     def test(self, dataset):
         self.reset_metrics()
         for x, y in dataset:

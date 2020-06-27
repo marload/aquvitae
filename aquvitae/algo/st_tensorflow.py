@@ -18,6 +18,7 @@ class ST(BaseTensorflow):
         self.alpha = config["alpha"]
         self.T = config["T"]
 
+    @tf.function
     def teach_step(self, x, y):
         with tf.GradientTape() as tape:
             t_logits = self.teacher(x, training=False)
