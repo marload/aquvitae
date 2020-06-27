@@ -41,7 +41,7 @@ student = dist(
 
 ```python
 from torch
-from aquvitae import dist, DML
+from aquvitae import dist, ST
 
 # Load the dataset
 train_ds = ...
@@ -54,7 +54,7 @@ student = ...
 student = dist(
     teacher=teacher,
     student=student,
-    algo=DML(alpha=0.6),
+    algo=ST(alpha=0.6, T=2.5),
     optimizer=torch.optim.Adam()
     train_ds=train_ds,
     test_ds=test_ds,
@@ -75,7 +75,7 @@ List of Knowledge Distillation Algorithms implemented in [AquVitae](https://gith
 | Algo | HP | Paper | TF | TORCH |
 |:---:|:---:|:---:|:---:|:---:|
 | ST | `alpha`, `T` | [Distilling the Knowledge in a Neural Network](https://arxiv.org/pdf/1503.02531.pdf) | ✔️ | ✔️ |
-| DML | `alpha` | [Deep Mutual Learning](https://arxiv.org/pdf/1706.00384.pdf) | ✔️ | ✔️ |
+| DML | `alpha` | [Deep Mutual Learning](https://arxiv.org/pdf/1706.00384.pdf) | - | - |
 
 
 ## License

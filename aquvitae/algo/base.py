@@ -36,24 +36,3 @@ class ST(BaseKD):
 
         self._check_config(self.config)
         return TORCH_ST(self.config)
-
-
-class DML(BaseKD):
-    def __init__(self, alpha):
-        self.config = {"alpha": alpha}
-
-    def _check_config(self, config):
-        assert type(self.config["alpha"]) == float
-        assert self.config["alpha"] <= 1.0 and self.config["alpha"] >= 0
-
-    def tensorflow(self):
-        from .dml_tensorflow import DML as TENSORFLOW_DML
-
-        self._check_config(self.config)
-        return TENSORFLOW_DML(self.config)
-
-    def torch(self):
-        from .dml_torch import DML as TORCH_DML
-
-        self._check_config(self.config)
-        return TORCH_DML(self.config)
