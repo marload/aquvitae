@@ -8,7 +8,7 @@ setup(
     author_email="rladhkstn8@gmail.com",
     url="https://github.com/aquvitae/aquvitae",
     download_url="https://github.com/aquvitae/aquvitae/archive/0.0.tar.gz",
-    install_requires=["tensorflow", "pytorch"],
+    install_requires=[],
     packages=find_packages(exclude=[]),
     keywords=[
         "aquvitae",
