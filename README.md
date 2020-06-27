@@ -4,9 +4,9 @@
   <img width="400" src="./assets/logo.png">
 </p>
 
-<h2 align=center>The Easiest Knowledge Distillation Library</h2>
+<h2 align=center>AquVitae: The Easiest Knowledge Distillation Library</h2>
 
-[AquVitae](https://github.com/aquvitae/aquvitae) is a Python library that is the easiest to perform Knowledge Distillation through a very simple API. This library supports [TensorFlow](https://github.com/tensorflow/tensorflow) and [PyTorch](https://github.com/pytorch/pytorch). Knowledge Distillation is usually used for Lightweight Deep Learning. This library has a popular and diverse Knowledge Distillation algorithm. If the Deep Learning model used in your project is too heavy, you can use [AquVitae](https://github.com/aquvitae/aquvitae) to make the speed very fast with little loss of performance.
+[AquVitae](https://github.com/aquvitae/aquvitae) is a Python library that is the easiest to perform Knowledge Distillation through a very simple API. This library supports [TensorFlow](https://github.com/tensorflow/tensorflow) and [PyTorch](https://github.com/pytorch/pytorch). Knowledge Distillation is the most representative model compression technology along with Weight Running and Quantization. This library has a popular and diverse Knowledge Distillation algorithm. If the Deep Learning model used in your project is too heavy, you can use [AquVitae](https://github.com/aquvitae/aquvitae) to make the speed very fast with little loss of performance.
 
 ## Getting Started
 
