@@ -74,7 +74,7 @@ List of Knowledge Distillation Algorithms implemented in [AquVitae](https://gith
 | :----: | :----------: | :----------------------------------------------------------------------------------: | :---: | :---: |
 |   ST   | `alpha`, `T` | [Distilling the Knowledge in a Neural Network](https://arxiv.org/pdf/1503.02531.pdf) |   ✔️   |   ✔️   |
 |  DML   |      -       |             [Deep Mutual Learning](https://arxiv.org/pdf/1706.00384.pdf)             |   -   |   -   |
-| FitNet |      -       |       [FITNETS: HINTS FOR THIN DEEP NETS](https://arxiv.org/pdf/1412.6550.pdf)       |   -   |   -   |
+| FitNets |      -       |       [FitNets: Hints for Thin Deep Nets](https://arxiv.org/pdf/1412.6550.pdf)       |   -   |   -   |
 |  RKD   |      -       |      [Relational Knowledge Distillation](https://arxiv.org/pdf/1904.05068.pdf)       |   -   |   -   |
 
 
