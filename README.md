@@ -53,7 +53,7 @@ student = dist(
     teacher=teacher,
     student=student,
     algo=ST(alpha=0.6, T=2.5),
-    optimizer=torch.optim.Adam()
+    optimizer=torch.optim.Adam(student.parameters())
     train_ds=train_ds,
     test_ds=test_ds,
     iterations=3000
