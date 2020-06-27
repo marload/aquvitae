@@ -80,6 +80,8 @@ def _tensorflow_dist(
 
     train_ds = train_ds.repeat()
     for idx, (x, y) in enumerate(train_ds):
+        if idx >= iterations:
+            break
         process_log.update(1)
         loss = algo.teach_step(x, y)
         result = algo.get_metrics()
