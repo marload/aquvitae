@@ -1,7 +1,7 @@
 import tensorflow as tf
 from aquvitae import dist, ST
 
-TEACHER_WEIGHTS_PATH = ...  # Teacher Weights PATH
+# TEACHER_WEIGHTS_PATH = ...  # Teacher Weights PATH
 BATCH_SIZE = 64
 INPUT_SHAPE = (32, 32, 3)
 NUM_CLASSES = 10
@@ -34,7 +34,7 @@ student = tf.keras.applications.MobileNetV2(
     # student's output activation function must be `None`.
     classifier_activation=None,
 )
-teacher.load_weights(TEACHER_WEIGHTS_PATH)
+# teacher.load_weights(TEACHER_WEIGHTS_PATH)
 
 student = dist(
     teacher=teacher,
