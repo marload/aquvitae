@@ -41,7 +41,7 @@ class BaseTorch(object, metaclass=ABCMeta):
         self.reset_metrics()
         with torch.set_grad_enabled(False):
             for x, y in dataset:
-                x, y = x.to(device), y.to(device)
+                x, y = x.to(self.device), y.to(self.device)
                 logits = self.student(x)
                 self.logging_metrics(y, logits)
         result = self.get_metrics()
