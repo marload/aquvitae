@@ -107,13 +107,13 @@ def _torch_dist(
     train_tmp = ""
     test_tmp = ""
 
-    train_ds = iter(train_ds)
+    train_iter = iter(train_ds)
     for idx in range(iterations):
         try:
-            x, y = train_ds.next()
+            x, y = train_iter.next()
         except StopIteration:
-            train_ds = iter(train_ds)
-            x, y = train_ds.next()
+            train_iter = iter(train_ds)
+            x, y = train_iter.next()
         process_log.update(1)
         loss = algo.teach_step(x, y)
         result = algo.get_metrics()
