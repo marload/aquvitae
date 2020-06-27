@@ -10,6 +10,8 @@
 
 ## Getting Started
 
+[![TF Tutorial Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aquvitae/aquvitae/blob/master/tutorials/BasicTutorialForTensorFlow.ipynb)
+
 In AquVitae, you only need to call the function **once** for Knowledge Distillation.
 
 ```python
