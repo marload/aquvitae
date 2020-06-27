@@ -1,5 +1,3 @@
-> This repository is still in development.
-
 ![TF Depend](https://img.shields.io/badge/TensorFlow-2.1-orange) ![TORCH Depend](https://img.shields.io/badge/pytorch-1.5.1-blue) ![License Badge](https://img.shields.io/badge/license-MIT-green)<br>
 
 <p align="center">
