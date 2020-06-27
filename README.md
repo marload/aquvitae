@@ -74,8 +74,8 @@ List of Knowledge Distillation Algorithms implemented in [AquVitae](https://gith
 
 | Algo | HP | Paper | TF | TORCH |
 |:---:|:---:|:---:|:---:|:---:|
-| ST | `alpha`, `T` | [Distilling the Knowledge in a Neural Network](https://arxiv.org/pdf/1503.02531.pdf) | ✔️ | ❌ |
-| DML | `alpha` | [Deep Mutual Learning](https://arxiv.org/pdf/1706.00384.pdf) | ✔️ | ❌ |
+| ST | `alpha`, `T` | [Distilling the Knowledge in a Neural Network](https://arxiv.org/pdf/1503.02531.pdf) | ✔️ | ✔️ |
+| DML | `alpha` | [Deep Mutual Learning](https://arxiv.org/pdf/1706.00384.pdf) | ✔️ | ✔️ |
 
 
 ## License
