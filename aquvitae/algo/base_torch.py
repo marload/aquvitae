@@ -6,11 +6,12 @@ import ignite
 
 class BaseTorch(object, metaclass=ABCMeta):
     def __init__(self, config):
-        self.metrics = {"Accuracy": ignite.metrics.Accuracy()}
+        self.metrics = {"accuracy": ignite.metrics.Accuracy()}
+        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     def set_model(self, teacher, student, optimizer):
-        self.teacher = teacher
-        self.student = student
+        self.teacher = teacher.to(self.device)
+        self.student = student.to(self.device)
         self.optimizer = optimizer
 
     @abstractmethod
@@ -41,6 +42,7 @@ class BaseTorch(object, metaclass=ABCMeta):
         student = self.student.eval()
         with torch.set_grad_enabled(False):
             for x, y in dataset:
+                x, y = x.to(device), y.to(device)
                 logits = student(x)
                 self.logging_metrics(y, logits)
         result = self.get_metrics()

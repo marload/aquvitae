@@ -21,6 +21,8 @@ class ST(BaseTorch):
         self.T = config["T"]
 
     def teach_step(self, x, y):
+        x = x.to(self.device)
+        y = y.to(self.device)
         self.optimizer.zero_grad()
         with torch.set_grad_enabled(False):
             t_logits = self.teacher(x)

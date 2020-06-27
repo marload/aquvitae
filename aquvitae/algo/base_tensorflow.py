@@ -5,7 +5,7 @@ import tensorflow as tf
 
 class BaseTensorflow(object, metaclass=ABCMeta):
     def __init__(self, config):
-        self.metrics = {"Accuracy": tf.keras.metrics.SparseCategoricalAccuracy()}
+        self.metrics = {"accuracy": tf.keras.metrics.SparseCategoricalAccuracy()}
 
     def set_model(self, teacher, student, optimizer):
         self.teacher = teacher
@@ -18,7 +18,7 @@ class BaseTensorflow(object, metaclass=ABCMeta):
 
     def logging_metrics(self, labels, logits):
         for name in self.metrics.keys():
-            self.metrics[name].update_state(logits, labels)
+            self.metrics[name].update_state(labels, logits)
 
     def reset_metrics(self):
         for name in self.metrics.keys():
@@ -40,6 +40,7 @@ class BaseTensorflow(object, metaclass=ABCMeta):
         for x, y in dataset:
             logits = self.student(x, training=False)
             self.logging_metrics(y, logits)
+
         result = self.get_metrics()
         self.reset_metrics()
         return result

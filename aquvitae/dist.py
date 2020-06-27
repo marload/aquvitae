@@ -1,5 +1,5 @@
 import os
-from tqdm import tqdm
+from tqdm import trange
 
 import torch
 import tensorflow as tf
@@ -20,7 +20,7 @@ def dist(
     metrics={},
     test_freq=200,
 ):
-    info = _check_dist(teacher, student, algo, optimizer, train_ds, test_ds,)
+    info = _check_dist(teacher, student, algo, optimizer, train_ds, test_ds)
 
     if info["framework"] == "torch":
         kd = algo.torch()
@@ -60,30 +60,36 @@ def _check_dist(teacher, student, algo, optimizer, train_ds, test_ds):
     return info
 
 
+def _init_dist(teacher, student, algo, optimizer, iterations):
+    algo.set_model(teacher, student, optimizer)
+    bar_format = "{desc} - {n_fmt}/{total_fmt} [{bar:30}] ETA: {elapsed}{postfix}"
+    process_log = trange(iterations, desc="Training", position=0, bar_format=bar_format)
+    return algo, process_log
+
+
 def _tensorflow_dist(
     teacher, student, algo, optimizer, train_ds, test_ds, iterations, test_freq
 ):
-    algo.set_model(teacher, student, optimizer)
+    algo, process_log = _init_dist(teacher, student, algo, optimizer, iterations)
+
+    train_tmp = ""
+    test_tmp = ""
+
     train_ds = train_ds.repeat()
-
-    iter_log = tqdm(range(iterations), position=0)
-    train_metric_log = tqdm(total=0, desc="TRAIN", position=1, bar_format="{desc}")
-    test_metric_log = tqdm(total=0, desc="TEST", position=2, bar_format="{desc}")
-
     for idx, (x, y) in enumerate(train_ds):
+        process_log.update(1)
         loss = algo.teach_step(x, y)
         result = algo.get_metrics()
-        train_metric_tmp = result_to_tqdm_template(result)
-        train_metric_log.set_description_str("TRAIN\t" + train_metric_tmp)
-        iter_log.update(1)
+        train_tmp = result_to_tqdm_template(result)
 
         if idx % test_freq == 0 and idx != 0:
+            process_log.set_description_str("Testing ")
             algo.reset_metrics()
             result = algo.test(test_ds)
-            test_metric_tmp = result_to_tqdm_template(result)
-            test_metric_log.set_description_str("TEST\t" + test_metric_tmp)
-        if idx >= iterations - 1:
-            break
+            test_tmp = result_to_tqdm_template(result, training=False)
+            process_log.set_description_str("Training")
+        postfix = train_tmp + "- " + test_tmp
+        process_log.set_postfix_str(postfix)
 
     return student
 
@@ -91,11 +97,9 @@ def _tensorflow_dist(
 def _torch_dist(
     teacher, student, algo, optimizer, train_ds, test_ds, iterations, test_freq
 ):
-    algo.set_model(teacher, student, optimizer)
-
-    iter_log = tqdm(range(iterations), position=0)
-    train_metric_log = tqdm(total=0, desc="TRAIN", position=1, bar_format="{desc}")
-    test_metric_log = tqdm(total=0, desc="TEST", position=2, bar_format="{desc}")
+    algo, iter_log, train_metric_log, test_metric_log = _init_dist(
+        teacher, student, algo, optimizer, iterations
+    )
 
     train_ds = iter(train_ds)
 
@@ -108,13 +112,13 @@ def _torch_dist(
         loss = algo.teach_step(x, y)
         result = algo.get_metrics()
         train_metric_tmp = result_to_tqdm_template(result)
-        train_metric_log.set_description_str("TRAIN\t" + train_metric_tmp)
+        train_metric_log.set_description_str("TRAIN:\t" + train_metric_tmp)
         iter_log.update(1)
 
         if idx % test_freq == 0 and idx != 0:
             algo.reset_metrics()
             result = algo.test(test_ds)
             test_metric_tmp = result_to_tqdm_template(result)
-            test_metric_log.set_description_str("TEST\t" + test_metric_tmp)
+            test_metric_log.set_description_str("TEST:\t" + test_metric_tmp)
 
     return student

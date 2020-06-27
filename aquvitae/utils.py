@@ -1,5 +1,8 @@
-def result_to_tqdm_template(result):
+def result_to_tqdm_template(result, training=True):
     template = ""
     for k in result.keys():
-        template += "[{}-{:.5f}] ".format(k, result[k])
+        display_name = k
+        if not training:
+            display_name = "val_{}".format(display_name)
+        template += "{}: {:.4f} -".format(display_name, result[k])
     return template[:-1]
