@@ -1,3 +1,9 @@
+"""Ref
+https://github.com/AberHu/Knowledge-Distillation-Zoo
+https://github.com/sseung0703/Knowledge_distillation_via_TF2.0
+"""
+
+
 import torch
 import torch.nn.functional as F
 from .base_torch import BaseTorch

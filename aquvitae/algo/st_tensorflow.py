@@ -1,3 +1,8 @@
+"""Ref
+https://arxiv.org/pdf/1503.02531.pdf
+https://github.com/sseung0703/Knowledge_distillation_via_TF2.0
+"""
+
 import tensorflow as tf
 from .base_tensorflow import BaseTensorflow
 
